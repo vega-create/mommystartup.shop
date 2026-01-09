@@ -484,12 +484,36 @@
 
     <script>
         // ==================== 設定 ====================
-        // 使用 GAS API 讀取資料（跟後台一樣的 API）
         const GAS_URL = 'https://script.google.com/macros/s/AKfycbwTGl1rkvVWLijCViUV2xb3qYKUOhFF5fcb0Id2-Ib2NePx6pIOw0EU2MM6PZ4MC_cpMA/exec';
+        const CACHE_KEY_HERO = 'mommyshop_hero';
+        const CACHE_KEY_PRODUCTS = 'mommyshop_products';
         
-        // 儲存資料
         let heroData = null;
         let productsData = [];
+        
+        // ==================== 快取功能 ====================
+        function saveCache(key, data) {
+            try {
+                localStorage.setItem(key, JSON.stringify({
+                    data: data,
+                    time: Date.now()
+                }));
+            } catch (e) {
+                console.log('快取儲存失敗');
+            }
+        }
+        
+        function getCache(key) {
+            try {
+                const cached = localStorage.getItem(key);
+                if (cached) {
+                    return JSON.parse(cached).data;
+                }
+            } catch (e) {
+                console.log('快取讀取失敗');
+            }
+            return null;
+        }
         
         // ==================== API 呼叫 ====================
         async function fetchGAS(action) {
@@ -497,7 +521,6 @@
                 const url = `${GAS_URL}?action=${action}`;
                 const response = await fetch(url);
                 const result = await response.json();
-                console.log(`${action} 結果:`, result);
                 return result;
             } catch (error) {
                 console.error(`${action} 錯誤:`, error);
@@ -601,24 +624,37 @@
         
         // ==================== 初始化 ====================
         async function init() {
-            console.log('開始載入資料...');
+            // 步驟 1：先顯示快取資料（立即顯示）
+            const cachedHero = getCache(CACHE_KEY_HERO);
+            const cachedProducts = getCache(CACHE_KEY_PRODUCTS);
             
-            // 讀取 Hero
-            const heroResult = await fetchGAS('getHero');
+            if (cachedHero) {
+                heroData = cachedHero;
+                renderHero(heroData);
+            }
+            
+            if (cachedProducts && cachedProducts.length > 0) {
+                productsData = cachedProducts;
+                renderProducts(productsData);
+            }
+            
+            // 步驟 2：背景載入最新資料
+            const [heroResult, productsResult] = await Promise.all([
+                fetchGAS('getHero'),
+                fetchGAS('getProducts')
+            ]);
+            
+            // 步驟 3：更新畫面並儲存快取
             if (heroResult.success && heroResult.data) {
                 heroData = heroResult.data;
                 renderHero(heroData);
-            } else {
-                renderHero(null);
+                saveCache(CACHE_KEY_HERO, heroData);
             }
             
-            // 讀取 Products
-            const productsResult = await fetchGAS('getProducts');
             if (productsResult.success && productsResult.data) {
                 productsData = productsResult.data;
                 renderProducts(productsData);
-            } else {
-                renderProducts([]);
+                saveCache(CACHE_KEY_PRODUCTS, productsData);
             }
             
             // 每分鐘更新倒數
