@@ -1,0 +1,57 @@
+{
+  "siteInfo": {
+    "title": "媽咪精選好物",
+    "subtitle": "精選團購，品質保證",
+    "logo": "https://mommystartup.com/wp-content/uploads/2023/02/2-removebg-preview-1.png"
+  },
+  "hero": {
+    "title": "最新開團中",
+    "image": "https://mommystartup.com/wp-content/uploads/2025/12/14-19-1024x1024.jpg",
+    "description": "精選優質商品，限時團購優惠！媽咪們一起來搶購，數量有限，售完為止！",
+    "ctaText": "立即搶購",
+    "ctaLink": "https://www.facebook.com/FollowMommyDeals",
+    "endDate": "2026-01-31"
+  },
+  "regularProducts": [
+    {
+      "id": 1,
+      "name": "有機寶寶副食品組",
+      "image": "https://mommystartup.com/wp-content/uploads/2025/12/15-12-1024x1024.jpg",
+      "description": "100% 有機食材製作，適合 6 個月以上寶寶",
+      "link": "https://www.facebook.com/FollowMommyDeals",
+      "badge": "熱銷"
+    },
+    {
+      "id": 2,
+      "name": "韓國兒童防曬乳",
+      "image": "https://mommystartup.com/wp-content/uploads/2025/12/4-35-1024x679.jpg",
+      "description": "物理性防曬，溫和不刺激，SPF50+ PA++++",
+      "link": "https://www.facebook.com/FollowMommyDeals",
+      "badge": "新品"
+    },
+    {
+      "id": 3,
+      "name": "日本製學習餐具組",
+      "image": "https://mommystartup.com/wp-content/uploads/2025/12/14-19-1024x1024.jpg",
+      "description": "安全材質，可愛造型，讓寶寶愛上吃飯",
+      "link": "https://www.facebook.com/FollowMommyDeals",
+      "badge": ""
+    },
+    {
+      "id": 4,
+      "name": "純棉親子睡衣組",
+      "image": "https://mommystartup.com/wp-content/uploads/2025/12/15-12-1024x1024.jpg",
+      "description": "100% 純棉材質，親膚舒適，多款花色",
+      "link": "https://www.facebook.com/FollowMommyDeals",
+      "badge": "常態"
+    }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/mommy.startup22",
+    "instagram": "https://www.instagram.com/mommystartup",
+    "line": "https://lin.ee/hD9U4uFg"
+  },
+  "footer": {
+    "copyright": "@2023 - All Right Reserved. Designed and Developed by 媽咪小編"
+  }
+}
