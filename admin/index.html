@@ -8,22 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #D4A5A5;
-            --primary-dark: #C48B8B;
-            --primary-light: #E8C4C4;
-            --secondary: #A8D5BA;
-            --accent: #E8B86D;
-            --danger: #FF6B6B;
-            --background: #FDFBF9;
-            --white: #FFFFFF;
-            --text: #4A4A4A;
-            --text-light: #777;
-            --border: #E0E0E0;
-            --shadow: 0 2px 10px rgba(0,0,0,0.08);
-            --radius: 12px;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -32,122 +16,95 @@
 
         body {
             font-family: 'Noto Sans TC', sans-serif;
-            background: var(--background);
-            color: var(--text);
+            background: #FDFBF9;
+            color: #4A4A4A;
             min-height: 100vh;
         }
 
-        /* Layout */
-        .admin-container {
-            display: grid;
-            grid-template-columns: 240px 1fr;
-            min-height: 100vh;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            background: var(--white);
-            border-right: 1px solid var(--border);
-            padding: 0;
-            position: fixed;
-            width: 240px;
-            height: 100vh;
-            overflow-y: auto;
-        }
-
-        .sidebar-header {
-            padding: 25px 20px;
-            border-bottom: 1px solid var(--border);
-            background: linear-gradient(135deg, var(--primary-light), var(--primary));
-        }
-
-        .sidebar-header h1 {
-            font-size: 18px;
+        /* Header */
+        .admin-header {
+            background: linear-gradient(135deg, #E8C4C4, #D4A5A5);
+            padding: 20px 30px;
             color: white;
-            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .sidebar-header span {
-            font-size: 12px;
-            color: rgba(255,255,255,0.8);
-        }
-
-        .nav-menu {
-            list-style: none;
-            padding: 15px 0;
-        }
-
-        .nav-item {
-            padding: 14px 25px;
-            cursor: pointer;
+        .admin-header h1 {
+            font-size: 20px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            transition: all 0.2s;
-            border-left: 3px solid transparent;
+            gap: 10px;
+        }
+
+        .admin-header a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        .admin-header a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0;
+            background: white;
+            border-bottom: 1px solid #E0E0E0;
+            padding: 0 30px;
+        }
+
+        .tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
             font-size: 15px;
-        }
-
-        .nav-item:hover {
-            background: var(--background);
-        }
-
-        .nav-item.active {
-            background: var(--background);
-            border-left-color: var(--primary);
-            color: var(--primary-dark);
             font-weight: 500;
+            color: #777;
+            transition: all 0.2s;
         }
 
-        .nav-icon {
-            font-size: 18px;
+        .tab:hover {
+            color: #D4A5A5;
+        }
+
+        .tab.active {
+            color: #C48B8B;
+            border-bottom-color: #D4A5A5;
         }
 
         /* Main Content */
         .main-content {
-            margin-left: 240px;
+            max-width: 900px;
+            margin: 0 auto;
             padding: 30px;
-            min-height: 100vh;
         }
 
-        .page-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
+        /* Section */
+        .section {
+            display: none;
         }
 
-        .page-title {
-            font-size: 24px;
-            color: var(--text);
-            font-weight: 600;
+        .section.active {
+            display: block;
         }
 
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        .status-badge.connected {
-            background: #E8F5E9;
-            color: #2E7D32;
-        }
-
-        .status-badge.disconnected {
-            background: #FFEBEE;
-            color: #C62828;
-        }
-
-        /* Cards */
+        /* Card */
         .card {
-            background: var(--white);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
             padding: 25px;
             margin-bottom: 20px;
         }
@@ -156,20 +113,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             padding-bottom: 15px;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid #E0E0E0;
         }
 
         .card-title {
-            font-size: 17px;
+            font-size: 18px;
             font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
-        /* Form Elements */
+        /* Form */
         .form-group {
             margin-bottom: 20px;
         }
@@ -178,68 +132,79 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
-            color: var(--text);
             font-size: 14px;
         }
 
-        .form-input,
-        .form-textarea {
+        .form-input {
             width: 100%;
             padding: 12px 15px;
-            border: 1px solid var(--border);
+            border: 1px solid #E0E0E0;
             border-radius: 8px;
             font-size: 15px;
             font-family: inherit;
-            transition: all 0.2s;
-            background: var(--white);
+            transition: border-color 0.2s;
         }
 
-        .form-input:focus,
-        .form-textarea:focus {
+        .form-input:focus {
             outline: none;
-            border-color: var(--primary);
+            border-color: #D4A5A5;
             box-shadow: 0 0 0 3px rgba(212, 165, 165, 0.15);
         }
 
         .form-textarea {
-            resize: vertical;
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
             min-height: 100px;
+            resize: vertical;
         }
 
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+        .form-textarea:focus {
+            outline: none;
+            border-color: #D4A5A5;
+            box-shadow: 0 0 0 3px rgba(212, 165, 165, 0.15);
         }
 
         .form-hint {
             font-size: 12px;
-            color: var(--text-light);
+            color: #999;
             margin-top: 5px;
         }
 
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
         /* Image Preview */
-        .image-preview-container {
+        .image-input-group {
             display: flex;
             gap: 15px;
             align-items: flex-start;
         }
 
-        .image-preview-container .form-input-wrapper {
+        .image-input-group .input-wrapper {
             flex: 1;
         }
 
         .image-preview {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
+            border: 2px dashed #E0E0E0;
             border-radius: 8px;
-            overflow: hidden;
-            background: var(--background);
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px dashed var(--border);
+            overflow: hidden;
             flex-shrink: 0;
+            background: #F9F9F9;
         }
 
         .image-preview img {
@@ -248,9 +213,9 @@
             object-fit: cover;
         }
 
-        .image-preview-placeholder {
-            color: var(--text-light);
+        .image-preview span {
             font-size: 12px;
+            color: #999;
             text-align: center;
             padding: 10px;
         }
@@ -271,7 +236,7 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(135deg, #D4A5A5, #C48B8B);
             color: white;
         }
 
@@ -287,23 +252,23 @@
         }
 
         .btn-secondary {
-            background: var(--secondary);
-            color: var(--text);
+            background: #A8D5BA;
+            color: #4A4A4A;
         }
 
         .btn-danger {
-            background: var(--danger);
+            background: #FF6B6B;
             color: white;
         }
 
         .btn-outline {
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text);
+            background: white;
+            border: 1px solid #E0E0E0;
+            color: #4A4A4A;
         }
 
         .btn-outline:hover {
-            background: var(--background);
+            background: #F9F9F9;
         }
 
         .btn-sm {
@@ -319,26 +284,21 @@
         }
 
         .product-item {
-            display: grid;
-            grid-template-columns: 80px 1fr auto;
+            display: flex;
             gap: 15px;
             padding: 15px;
-            background: var(--background);
+            background: #F9F9F9;
             border-radius: 10px;
             align-items: center;
-            transition: all 0.2s;
-        }
-
-        .product-item:hover {
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
         .product-item-image {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             border-radius: 8px;
             overflow: hidden;
-            background: var(--white);
+            flex-shrink: 0;
+            background: white;
         }
 
         .product-item-image img {
@@ -347,21 +307,40 @@
             object-fit: cover;
         }
 
+        .product-item-info {
+            flex: 1;
+            min-width: 0;
+        }
+
         .product-item-info h4 {
             font-size: 15px;
-            margin-bottom: 5px;
-            color: var(--text);
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .product-item-info p {
             font-size: 13px;
-            color: var(--text-light);
-            margin-bottom: 5px;
+            color: #777;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .product-badge {
+            display: inline-block;
+            background: #E8B86D;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 11px;
+            margin-top: 5px;
         }
 
         .product-item-actions {
             display: flex;
             gap: 8px;
+            flex-shrink: 0;
         }
 
         /* Badge Options */
@@ -373,21 +352,33 @@
 
         .badge-option {
             padding: 8px 16px;
-            border: 2px solid var(--border);
+            border: 2px solid #E0E0E0;
             border-radius: 20px;
             cursor: pointer;
-            transition: all 0.2s;
             font-size: 13px;
+            transition: all 0.2s;
         }
 
         .badge-option:hover {
-            border-color: var(--primary-light);
+            border-color: #E8C4C4;
         }
 
         .badge-option.selected {
-            background: var(--primary);
-            border-color: var(--primary);
+            background: #D4A5A5;
+            border-color: #D4A5A5;
             color: white;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 50px 20px;
+            color: #999;
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
         }
 
         /* Toast */
@@ -396,7 +387,7 @@
             bottom: 30px;
             right: 30px;
             padding: 15px 25px;
-            background: var(--text);
+            background: #4A4A4A;
             color: white;
             border-radius: 10px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.2);
@@ -417,10 +408,10 @@
         }
 
         .toast.error {
-            background: var(--danger);
+            background: #FF6B6B;
         }
 
-        /* Loading Overlay */
+        /* Loading */
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -442,11 +433,11 @@
             pointer-events: all;
         }
 
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid var(--primary-light);
-            border-top-color: var(--primary);
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #E8C4C4;
+            border-top-color: #D4A5A5;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -455,16 +446,7 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Section visibility */
-        .section {
-            display: none;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        /* Product Edit Modal */
+        /* Modal */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -487,11 +469,11 @@
         }
 
         .modal {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
             width: 90%;
-            max-width: 600px;
+            max-width: 550px;
             max-height: 90vh;
             overflow-y: auto;
             transform: scale(0.9);
@@ -506,11 +488,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .modal-title {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 600;
         }
 
@@ -519,12 +501,13 @@
             border: none;
             font-size: 24px;
             cursor: pointer;
-            color: var(--text-light);
+            color: #999;
             padding: 5px;
+            line-height: 1;
         }
 
         .modal-close:hover {
-            color: var(--text);
+            color: #4A4A4A;
         }
 
         .modal-actions {
@@ -533,302 +516,263 @@
             justify-content: flex-end;
             margin-top: 25px;
             padding-top: 20px;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid #E0E0E0;
         }
 
-        /* Empty State */
-        .empty-state {
-            text-align: center;
-            padding: 50px 20px;
-            color: var(--text-light);
+        /* Status */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
         }
 
-        .empty-state-icon {
-            font-size: 50px;
-            margin-bottom: 15px;
+        .status-badge.connected {
+            background: #E8F5E9;
+            color: #2E7D32;
+        }
+
+        .status-badge.error {
+            background: #FFEBEE;
+            color: #C62828;
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .admin-container {
-                grid-template-columns: 1fr;
-            }
-
-            .sidebar {
-                position: relative;
-                width: 100%;
-                height: auto;
-            }
-
+        @media (max-width: 600px) {
             .main-content {
-                margin-left: 0;
-                padding: 20px;
+                padding: 20px 15px;
             }
 
             .form-row {
-                grid-template-columns: 1fr;
+                flex-direction: column;
+                gap: 0;
             }
 
             .product-item {
-                grid-template-columns: 60px 1fr;
+                flex-wrap: wrap;
             }
 
             .product-item-actions {
-                grid-column: 1 / -1;
+                width: 100%;
                 justify-content: flex-end;
+                margin-top: 10px;
+            }
+
+            .admin-header {
+                padding: 15px 20px;
+            }
+
+            .admin-header h1 {
+                font-size: 16px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Loading Overlay -->
+    <!-- Loading -->
     <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-spinner"></div>
+        <div class="spinner"></div>
     </div>
 
     <!-- Toast -->
     <div class="toast" id="toast"></div>
 
-    <!-- Product Edit Modal -->
+    <!-- Product Modal -->
     <div class="modal-overlay" id="productModal">
         <div class="modal">
             <div class="modal-header">
                 <h3 class="modal-title" id="modalTitle">新增商品</h3>
-                <button class="modal-close" onclick="closeProductModal()">×</button>
+                <button class="modal-close" onclick="closeModal()">×</button>
             </div>
-            <div class="modal-body">
-                <input type="hidden" id="editProductIndex">
-                
-                <div class="form-group">
-                    <label class="form-label">商品名稱 *</label>
-                    <input type="text" class="form-input" id="editProductName" placeholder="輸入商品名稱">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">商品圖片網址 *</label>
-                    <div class="image-preview-container">
-                        <div class="form-input-wrapper" style="flex:1">
-                            <input type="text" class="form-input" id="editProductImage" placeholder="https://..." oninput="previewProductImage()">
-                            <p class="form-hint">建議使用 Cloudinary 或 WordPress 媒體庫的圖片網址</p>
-                        </div>
-                        <div class="image-preview" id="editProductImagePreview">
-                            <span class="image-preview-placeholder">圖片預覽</span>
-                        </div>
+            
+            <div class="form-group">
+                <label class="form-label">商品名稱 *</label>
+                <input type="text" class="form-input" id="editName" placeholder="輸入商品名稱">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">商品圖片網址 *</label>
+                <div class="image-input-group">
+                    <div class="input-wrapper">
+                        <input type="text" class="form-input" id="editImage" placeholder="https://..." oninput="previewEditImage()">
+                        <p class="form-hint">建議使用 Cloudinary 或 WordPress 媒體庫</p>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">商品說明</label>
-                    <textarea class="form-textarea" id="editProductDescription" placeholder="輸入商品說明"></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">購買連結 *</label>
-                    <input type="text" class="form-input" id="editProductLink" placeholder="https://...">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">標籤</label>
-                    <div class="badge-options" id="badgeOptions">
-                        <div class="badge-option selected" data-badge="">無標籤</div>
-                        <div class="badge-option" data-badge="熱銷">🔥 熱銷</div>
-                        <div class="badge-option" data-badge="新品">✨ 新品</div>
-                        <div class="badge-option" data-badge="常態">📦 常態</div>
+                    <div class="image-preview" id="editImagePreview">
+                        <span>預覽</span>
                     </div>
                 </div>
             </div>
+            
+            <div class="form-group">
+                <label class="form-label">商品說明</label>
+                <textarea class="form-textarea" id="editDesc" placeholder="輸入商品說明"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">購買連結 *</label>
+                <input type="text" class="form-input" id="editLink" placeholder="https://...">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">標籤</label>
+                <div class="badge-options" id="badgeOptions">
+                    <div class="badge-option selected" data-badge="" onclick="selectBadge(this)">無</div>
+                    <div class="badge-option" data-badge="熱銷" onclick="selectBadge(this)">🔥 熱銷</div>
+                    <div class="badge-option" data-badge="新品" onclick="selectBadge(this)">✨ 新品</div>
+                    <div class="badge-option" data-badge="常態" onclick="selectBadge(this)">📦 常態</div>
+                </div>
+            </div>
+            
             <div class="modal-actions">
-                <button class="btn btn-outline" onclick="closeProductModal()">取消</button>
-                <button class="btn btn-primary" onclick="saveProduct()">💾 儲存商品</button>
+                <button class="btn btn-outline" onclick="closeModal()">取消</button>
+                <button class="btn btn-primary" onclick="saveProduct()">💾 儲存</button>
             </div>
         </div>
     </div>
 
-    <div class="admin-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <h1>📦 媽咪精選好物</h1>
-                <span>後台管理系統</span>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item active" onclick="showSection('hero')">
-                    <span class="nav-icon">🎯</span>
-                    最新團購
-                </li>
-                <li class="nav-item" onclick="showSection('products')">
-                    <span class="nav-icon">🛍️</span>
-                    常態商品
-                </li>
-            </ul>
-            <div style="padding: 20px; border-top: 1px solid var(--border); margin-top: auto;">
-                <a href="https://shop.mommystartup.com" target="_blank" class="btn btn-outline" style="width: 100%; justify-content: center;">
-                    👁️ 查看前台
-                </a>
-            </div>
-        </aside>
+    <!-- Header -->
+    <header class="admin-header">
+        <h1>📦 媽咪精選好物 - 後台</h1>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <span class="status-badge connected" id="status">● 已連線</span>
+            <a href="https://shop.mommystartup.com" target="_blank">👁️ 查看前台</a>
+        </div>
+    </header>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Hero Section -->
-            <div class="section active" id="section-hero">
-                <div class="page-header">
-                    <h2 class="page-title">🎯 最新團購</h2>
-                    <div class="status-badge connected" id="connectionStatus">
-                        <span>●</span> 已連接 Google Sheets
-                    </div>
+    <!-- Tabs -->
+    <div class="tabs">
+        <div class="tab active" onclick="showSection('hero', this)">🎯 最新團購</div>
+        <div class="tab" onclick="showSection('products', this)">🛍️ 常態商品</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Hero Section -->
+        <div class="section active" id="section-hero">
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">📝 團購資訊</span>
+                    <button class="btn btn-primary" onclick="saveHero()" id="saveHeroBtn">💾 儲存並發布</button>
                 </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-title">📝 團購資訊</span>
-                        <button class="btn btn-primary" onclick="saveHero()" id="saveHeroBtn">
-                            💾 儲存並發布
-                        </button>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">團購標題 *</label>
-                        <input type="text" class="form-input" id="heroTitle" placeholder="例如：超值親子團購">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">主圖網址 *</label>
-                        <div class="image-preview-container">
-                            <div class="form-input-wrapper" style="flex:1">
-                                <input type="text" class="form-input" id="heroImage" placeholder="https://..." oninput="previewHeroImage()">
-                                <p class="form-hint">建議尺寸：800x800 像素，正方形或 4:3 比例</p>
-                            </div>
-                            <div class="image-preview" id="heroImagePreview">
-                                <span class="image-preview-placeholder">圖片預覽</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">團購說明</label>
-                        <textarea class="form-textarea" id="heroDescription" placeholder="輸入團購說明文字..."></textarea>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">購買連結 *</label>
-                            <input type="text" class="form-input" id="heroLink" placeholder="https://...">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">按鈕文字</label>
-                            <input type="text" class="form-input" id="heroCtaText" placeholder="例如：立即搶購" value="立即搶購">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">結團日期</label>
-                        <input type="date" class="form-input" id="heroEndDate" style="max-width: 250px;">
-                        <p class="form-hint">設定後前台會顯示倒數計時</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Products Section -->
-            <div class="section" id="section-products">
-                <div class="page-header">
-                    <h2 class="page-title">🛍️ 常態商品</h2>
-                    <button class="btn btn-primary" onclick="openAddProductModal()">
-                        ➕ 新增商品
-                    </button>
+                <div class="form-group">
+                    <label class="form-label">團購標題 *</label>
+                    <input type="text" class="form-input" id="heroTitle" placeholder="例如：超值親子團購">
                 </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        <span class="card-title">📦 商品列表</span>
-                        <button class="btn btn-secondary btn-sm" onclick="saveAllProducts()" id="saveProductsBtn">
-                            💾 儲存全部
-                        </button>
-                    </div>
-
-                    <div class="product-list" id="productList">
-                        <div class="empty-state">
-                            <div class="empty-state-icon">📦</div>
-                            <p>目前沒有商品</p>
-                            <p style="font-size: 13px; margin-top: 5px;">點擊上方「新增商品」開始添加</p>
+                <div class="form-group">
+                    <label class="form-label">主圖網址 *</label>
+                    <div class="image-input-group">
+                        <div class="input-wrapper">
+                            <input type="text" class="form-input" id="heroImage" placeholder="https://..." oninput="previewHeroImage()">
+                            <p class="form-hint">建議尺寸 800x800，正方形或 4:3</p>
+                        </div>
+                        <div class="image-preview" id="heroImagePreview">
+                            <span>預覽</span>
                         </div>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label class="form-label">團購說明</label>
+                    <textarea class="form-textarea" id="heroDescription" placeholder="輸入說明文字..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">購買連結 *</label>
+                        <input type="text" class="form-input" id="heroLink" placeholder="https://...">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">按鈕文字</label>
+                        <input type="text" class="form-input" id="heroCtaText" placeholder="立即搶購" value="立即搶購">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">結團日期</label>
+                    <input type="date" class="form-input" id="heroEndDate" style="max-width: 200px;">
+                    <p class="form-hint">前台會顯示倒數計時</p>
+                </div>
             </div>
-        </main>
+        </div>
+
+        <!-- Products Section -->
+        <div class="section" id="section-products">
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">📦 商品列表</span>
+                    <button class="btn btn-primary" onclick="openAddModal()">➕ 新增商品</button>
+                </div>
+
+                <div class="product-list" id="productList">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📦</div>
+                        <p>目前沒有商品</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // ==================== 設定 ====================
-        const GAS_URL = 'https://script.google.com/macros/s/AKfycbwTGl1rkvVWWijCViUV2xb3qYKUOhFF5fcb0Id2-Ib2NePx6pIOw0EU2MM6PZ4MC_cpMA/exec';
+        // 設定
+        const GAS_URL = 'https://script.google.com/macros/s/AKfycbwTGl1rkvVWLijCViUV2xb3qYKUOhFF5fcb0Id2-Ib2NePx6pIOw0EU2MM6PZ4MC_cpMA/exec';
         
-        // ==================== 資料 ====================
-        let heroData = {
-            title: '',
-            image: '',
-            link: '',
-            description: '',
-            ctaText: '立即搶購',
-            endDate: ''
-        };
-        
+        // 資料
+        let heroData = {};
         let productsData = [];
-        let currentEditIndex = -1;
+        let editIndex = -1;
 
-        // ==================== 初始化 ====================
+        // 初始化
         async function init() {
             showLoading(true);
-            
             try {
-                // 載入 Hero 資料
-                const heroResult = await fetchGAS('getHero');
-                if (heroResult.success && heroResult.data) {
-                    heroData = heroResult.data;
-                    loadHeroForm();
+                // 載入 Hero
+                const heroRes = await fetchGAS('getHero');
+                if (heroRes.success && heroRes.data) {
+                    heroData = heroRes.data;
+                    fillHeroForm();
                 }
                 
-                // 載入 Products 資料
-                const productsResult = await fetchGAS('getProducts');
-                if (productsResult.success && productsResult.data) {
-                    productsData = productsResult.data;
-                    renderProductList();
+                // 載入 Products
+                const prodRes = await fetchGAS('getProducts');
+                if (prodRes.success && prodRes.data) {
+                    productsData = prodRes.data;
+                    renderProducts();
                 }
                 
-                updateConnectionStatus(true);
-            } catch (error) {
-                console.error('Init error:', error);
-                updateConnectionStatus(false);
-                showToast('無法連接 Google Sheets，請檢查網路', 'error');
+                setStatus(true);
+            } catch (e) {
+                console.error(e);
+                setStatus(false);
+                showToast('連線失敗', 'error');
             }
-            
             showLoading(false);
         }
 
-        // ==================== API 呼叫 ====================
+        // API
         async function fetchGAS(action, data = null) {
             let url = `${GAS_URL}?action=${action}`;
-            
-            if (data) {
-                url += `&data=${encodeURIComponent(JSON.stringify(data))}`;
-            }
-            
-            const response = await fetch(url);
-            return await response.json();
+            if (data) url += `&data=${encodeURIComponent(JSON.stringify(data))}`;
+            const res = await fetch(url);
+            return await res.json();
         }
 
-        // ==================== Hero 相關 ====================
-        function loadHeroForm() {
+        // Hero
+        function fillHeroForm() {
             document.getElementById('heroTitle').value = heroData.title || '';
             document.getElementById('heroImage').value = heroData.image || '';
             document.getElementById('heroDescription').value = heroData.description || '';
             document.getElementById('heroLink').value = heroData.link || '';
             document.getElementById('heroCtaText').value = heroData.ctaText || '立即搶購';
             document.getElementById('heroEndDate').value = heroData.endDate || '';
-            
             previewHeroImage();
         }
 
-        function collectHeroData() {
+        async function saveHero() {
             heroData = {
                 title: document.getElementById('heroTitle').value.trim(),
                 image: document.getElementById('heroImage').value.trim(),
@@ -837,251 +781,173 @@
                 ctaText: document.getElementById('heroCtaText').value.trim() || '立即搶購',
                 endDate: document.getElementById('heroEndDate').value
             };
-        }
-
-        async function saveHero() {
-            collectHeroData();
             
-            // 驗證必填欄位
             if (!heroData.title || !heroData.image || !heroData.link) {
-                showToast('請填寫標題、圖片網址和購買連結', 'error');
+                showToast('請填寫標題、圖片、連結', 'error');
                 return;
             }
             
             const btn = document.getElementById('saveHeroBtn');
             btn.disabled = true;
-            btn.innerHTML = '⏳ 儲存中...';
+            btn.textContent = '⏳ 儲存中...';
             
             try {
-                const result = await fetchGAS('updateHero', heroData);
-                
-                if (result.success) {
-                    showToast('✅ 團購資訊已更新！前台將自動顯示新內容', 'success');
+                const res = await fetchGAS('updateHero', heroData);
+                if (res.success) {
+                    showToast('✅ 已更新！', 'success');
                 } else {
-                    showToast('儲存失敗：' + result.error, 'error');
+                    showToast('失敗: ' + res.error, 'error');
                 }
-            } catch (error) {
-                console.error('Save hero error:', error);
-                showToast('儲存失敗，請檢查網路連線', 'error');
+            } catch (e) {
+                showToast('儲存失敗', 'error');
             }
             
             btn.disabled = false;
-            btn.innerHTML = '💾 儲存並發布';
+            btn.textContent = '💾 儲存並發布';
         }
 
         function previewHeroImage() {
             const url = document.getElementById('heroImage').value;
-            const preview = document.getElementById('heroImagePreview');
-            
-            if (url) {
-                preview.innerHTML = `<img src="${url}" alt="預覽" onerror="this.parentElement.innerHTML='<span class=\\'image-preview-placeholder\\'>圖片載入失敗</span>'">`;
-            } else {
-                preview.innerHTML = '<span class="image-preview-placeholder">圖片預覽</span>';
-            }
+            const el = document.getElementById('heroImagePreview');
+            el.innerHTML = url ? `<img src="${url}" onerror="this.parentElement.innerHTML='<span>載入失敗</span>'">` : '<span>預覽</span>';
         }
 
-        // ==================== Products 相關 ====================
-        function renderProductList() {
-            const list = document.getElementById('productList');
-            
-            if (productsData.length === 0) {
-                list.innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-state-icon">📦</div>
-                        <p>目前沒有商品</p>
-                        <p style="font-size: 13px; margin-top: 5px;">點擊上方「新增商品」開始添加</p>
-                    </div>
-                `;
+        // Products
+        function renderProducts() {
+            const el = document.getElementById('productList');
+            if (!productsData.length) {
+                el.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📦</div><p>目前沒有商品</p></div>';
                 return;
             }
-            
-            list.innerHTML = productsData.map((product, index) => `
+            el.innerHTML = productsData.map((p, i) => `
                 <div class="product-item">
                     <div class="product-item-image">
-                        <img src="${product.image || 'https://via.placeholder.com/80x80?text=No+Image'}" 
-                             alt="${product.name}"
-                             onerror="this.src='https://via.placeholder.com/80x80?text=Error'">
+                        <img src="${p.image || 'https://via.placeholder.com/70'}" onerror="this.src='https://via.placeholder.com/70?text=Error'">
                     </div>
                     <div class="product-item-info">
-                        <h4>${product.name || '未命名商品'}</h4>
-                        <p>${product.description || '無說明'}</p>
-                        ${product.badge ? `<span style="background: var(--accent); padding: 3px 10px; border-radius: 12px; font-size: 12px;">${product.badge}</span>` : ''}
+                        <h4>${p.name || '未命名'}</h4>
+                        <p>${p.description || '無說明'}</p>
+                        ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
                     </div>
                     <div class="product-item-actions">
-                        <button class="btn btn-outline btn-sm" onclick="openEditProductModal(${index})">✏️ 編輯</button>
-                        <button class="btn btn-danger btn-sm" onclick="deleteProduct(${index})">🗑️</button>
+                        <button class="btn btn-outline btn-sm" onclick="openEditModal(${i})">✏️ 編輯</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteProduct(${i})">🗑️</button>
                     </div>
                 </div>
             `).join('');
         }
 
-        function openAddProductModal() {
-            currentEditIndex = -1;
+        function openAddModal() {
+            editIndex = -1;
             document.getElementById('modalTitle').textContent = '新增商品';
-            document.getElementById('editProductIndex').value = '';
-            document.getElementById('editProductName').value = '';
-            document.getElementById('editProductImage').value = '';
-            document.getElementById('editProductDescription').value = '';
-            document.getElementById('editProductLink').value = '';
-            document.getElementById('editProductImagePreview').innerHTML = '<span class="image-preview-placeholder">圖片預覽</span>';
-            
-            // 重設標籤選擇
-            document.querySelectorAll('#badgeOptions .badge-option').forEach(opt => {
-                opt.classList.toggle('selected', opt.dataset.badge === '');
-            });
-            
+            document.getElementById('editName').value = '';
+            document.getElementById('editImage').value = '';
+            document.getElementById('editDesc').value = '';
+            document.getElementById('editLink').value = '';
+            document.getElementById('editImagePreview').innerHTML = '<span>預覽</span>';
+            document.querySelectorAll('.badge-option').forEach(o => o.classList.toggle('selected', o.dataset.badge === ''));
             document.getElementById('productModal').classList.add('show');
         }
 
-        function openEditProductModal(index) {
-            currentEditIndex = index;
-            const product = productsData[index];
-            
+        function openEditModal(i) {
+            editIndex = i;
+            const p = productsData[i];
             document.getElementById('modalTitle').textContent = '編輯商品';
-            document.getElementById('editProductIndex').value = index;
-            document.getElementById('editProductName').value = product.name || '';
-            document.getElementById('editProductImage').value = product.image || '';
-            document.getElementById('editProductDescription').value = product.description || '';
-            document.getElementById('editProductLink').value = product.link || '';
-            
-            previewProductImage();
-            
-            // 設定標籤選擇
-            document.querySelectorAll('#badgeOptions .badge-option').forEach(opt => {
-                opt.classList.toggle('selected', opt.dataset.badge === (product.badge || ''));
-            });
-            
+            document.getElementById('editName').value = p.name || '';
+            document.getElementById('editImage').value = p.image || '';
+            document.getElementById('editDesc').value = p.description || '';
+            document.getElementById('editLink').value = p.link || '';
+            previewEditImage();
+            document.querySelectorAll('.badge-option').forEach(o => o.classList.toggle('selected', o.dataset.badge === (p.badge || '')));
             document.getElementById('productModal').classList.add('show');
         }
 
-        function closeProductModal() {
+        function closeModal() {
             document.getElementById('productModal').classList.remove('show');
-            currentEditIndex = -1;
         }
 
-        function previewProductImage() {
-            const url = document.getElementById('editProductImage').value;
-            const preview = document.getElementById('editProductImagePreview');
-            
-            if (url) {
-                preview.innerHTML = `<img src="${url}" alt="預覽" onerror="this.parentElement.innerHTML='<span class=\\'image-preview-placeholder\\'>圖片載入失敗</span>'">`;
-            } else {
-                preview.innerHTML = '<span class="image-preview-placeholder">圖片預覽</span>';
-            }
+        function selectBadge(el) {
+            document.querySelectorAll('.badge-option').forEach(o => o.classList.remove('selected'));
+            el.classList.add('selected');
+        }
+
+        function previewEditImage() {
+            const url = document.getElementById('editImage').value;
+            const el = document.getElementById('editImagePreview');
+            el.innerHTML = url ? `<img src="${url}" onerror="this.parentElement.innerHTML='<span>載入失敗</span>'">` : '<span>預覽</span>';
         }
 
         async function saveProduct() {
-            const name = document.getElementById('editProductName').value.trim();
-            const image = document.getElementById('editProductImage').value.trim();
-            const description = document.getElementById('editProductDescription').value.trim();
-            const link = document.getElementById('editProductLink').value.trim();
-            const selectedBadge = document.querySelector('#badgeOptions .badge-option.selected');
-            const badge = selectedBadge ? selectedBadge.dataset.badge : '';
+            const name = document.getElementById('editName').value.trim();
+            const image = document.getElementById('editImage').value.trim();
+            const description = document.getElementById('editDesc').value.trim();
+            const link = document.getElementById('editLink').value.trim();
+            const badge = document.querySelector('.badge-option.selected')?.dataset.badge || '';
             
-            // 驗證
             if (!name || !image || !link) {
-                showToast('請填寫商品名稱、圖片網址和購買連結', 'error');
+                showToast('請填寫名稱、圖片、連結', 'error');
                 return;
             }
             
-            const productData = { name, image, description, link, badge };
+            const product = { name, image, description, link, badge };
             
-            if (currentEditIndex >= 0) {
-                productsData[currentEditIndex] = productData;
+            if (editIndex >= 0) {
+                productsData[editIndex] = product;
             } else {
-                productsData.push(productData);
+                productsData.push(product);
             }
             
-            closeProductModal();
-            renderProductList();
-            
-            // 自動儲存到 Google Sheets
+            closeModal();
+            renderProducts();
             await saveAllProducts();
         }
 
-        async function deleteProduct(index) {
-            if (!confirm('確定要刪除這個商品嗎？')) return;
-            
-            productsData.splice(index, 1);
-            renderProductList();
-            
-            // 自動儲存到 Google Sheets
+        async function deleteProduct(i) {
+            if (!confirm('確定刪除？')) return;
+            productsData.splice(i, 1);
+            renderProducts();
             await saveAllProducts();
         }
 
         async function saveAllProducts() {
-            const btn = document.getElementById('saveProductsBtn');
-            btn.disabled = true;
-            btn.innerHTML = '⏳ 儲存中...';
-            
             try {
-                const result = await fetchGAS('updateProducts', productsData);
-                
-                if (result.success) {
-                    showToast('✅ 商品已更新！前台將自動顯示新內容', 'success');
+                const res = await fetchGAS('updateProducts', productsData);
+                if (res.success) {
+                    showToast('✅ 商品已更新！', 'success');
                 } else {
-                    showToast('儲存失敗：' + result.error, 'error');
+                    showToast('失敗: ' + res.error, 'error');
                 }
-            } catch (error) {
-                console.error('Save products error:', error);
-                showToast('儲存失敗，請檢查網路連線', 'error');
+            } catch (e) {
+                showToast('儲存失敗', 'error');
             }
-            
-            btn.disabled = false;
-            btn.innerHTML = '💾 儲存全部';
         }
 
-        // ==================== Badge 選擇 ====================
-        document.getElementById('badgeOptions').addEventListener('click', function(e) {
-            if (e.target.classList.contains('badge-option')) {
-                document.querySelectorAll('#badgeOptions .badge-option').forEach(opt => {
-                    opt.classList.remove('selected');
-                });
-                e.target.classList.add('selected');
-            }
-        });
-
-        // ==================== UI 輔助 ====================
-        function showSection(section) {
-            // 更新 nav
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            event.currentTarget.classList.add('active');
-            
-            // 更新內容
-            document.querySelectorAll('.section').forEach(sec => {
-                sec.classList.remove('active');
-            });
-            document.getElementById(`section-${section}`).classList.add('active');
+        // UI
+        function showSection(name, tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById('section-' + name).classList.add('active');
         }
 
         function showLoading(show) {
             document.getElementById('loadingOverlay').classList.toggle('show', show);
         }
 
-        function showToast(message, type = 'info') {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.className = 'toast show ' + type;
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3500);
+        function showToast(msg, type = '') {
+            const el = document.getElementById('toast');
+            el.textContent = msg;
+            el.className = 'toast show ' + type;
+            setTimeout(() => el.classList.remove('show'), 3000);
         }
 
-        function updateConnectionStatus(connected) {
-            const status = document.getElementById('connectionStatus');
-            if (connected) {
-                status.className = 'status-badge connected';
-                status.innerHTML = '<span>●</span> 已連接 Google Sheets';
-            } else {
-                status.className = 'status-badge disconnected';
-                status.innerHTML = '<span>●</span> 連線失敗';
-            }
+        function setStatus(ok) {
+            const el = document.getElementById('status');
+            el.className = 'status-badge ' + (ok ? 'connected' : 'error');
+            el.textContent = ok ? '● 已連線' : '● 連線失敗';
         }
 
-        // ==================== 啟動 ====================
+        // 啟動
         init();
     </script>
 </body>
