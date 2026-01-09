@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>媽咪精選好物</title>
+    
     <!-- Favicon -->
-   <link rel="icon" type="image/png" href="https://mommystartup.com/wp-content/uploads/2026/01/媽咪小編-logo-沒去背.png">
-    <link rel="apple-touch-icon" href="https://mommystartup.com/wp-content/uploads/2026/01/媽咪小編-logo-沒去背.png">
+    <link rel="icon" type="image/png" href="https://mommystartup.com/wp-content/uploads/2023/02/2-removebg-preview-1.png">
+    <link rel="apple-touch-icon" href="https://mommystartup.com/wp-content/uploads/2023/02/2-removebg-preview-1.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- 使用與官網相近的字體 -->
@@ -57,6 +59,39 @@
         }
 
         /* ========== Header ========== */
+        
+        /* 頂部大圖橫幅 */
+        .top-banner {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #FAF5F3 0%, #F5EBE8 50%, #EDE3DF 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .top-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://mommystartup.com/wp-content/uploads/2025/12/freepik__candid-i-with-natural-textures-and-highly-realisti__74470-1024x584.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.9;
+        }
+
+        .top-banner .banner-logo {
+            max-width: 280px;
+            height: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 導航列 */
         header {
             background: var(--bg-light);
             padding: 1rem 2rem;
@@ -70,8 +105,12 @@
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
+        }
+
+        .logo {
+            display: none;
         }
 
         .logo img {
@@ -553,6 +592,14 @@
         }
 
         @media (max-width: 768px) {
+            .top-banner {
+                height: 250px;
+            }
+
+            .top-banner .banner-logo {
+                max-width: 180px;
+            }
+
             nav ul {
                 display: none;
             }
@@ -579,12 +626,16 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- 頂部大圖橫幅 -->
+    <div class="top-banner">
+        <a href="https://mommystartup.com/">
+            <img src="https://mommystartup.com/wp-content/uploads/2023/02/2-removebg-preview-1.png" alt="Mommy Startup" class="banner-logo">
+        </a>
+    </div>
+
+    <!-- 導航選單 -->
     <header>
         <div class="header-inner">
-            <a href="https://mommystartup.com/" class="logo">
-                <img id="logo" src="https://mommystartup.com/wp-content/uploads/2023/02/2-removebg-preview-1.png" alt="媽咪精選好物">
-            </a>
             <nav>
                 <ul>
                     <li><a href="https://mommystartup.com/">首頁</a></li>
