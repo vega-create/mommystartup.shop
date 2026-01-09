@@ -374,6 +374,12 @@
             to { transform: rotate(360deg); }
         }
         
+        .empty-message {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-light);
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .header-content {
@@ -478,52 +484,24 @@
 
     <script>
         // ==================== 設定 ====================
-        const SHEET_ID = '1m7Nj9Cj8A9_RxENJ7DSn-hvOaMftFwCrcKGfeoMlSq4';
+        // 使用 GAS API 讀取資料（跟後台一樣的 API）
+        const GAS_URL = 'https://script.google.com/macros/s/AKfycbwTGl1rkvVWLijCViUV2xb3qYKUOhFF5fcb0Id2-Ib2NePx6pIOw0EU2MM6PZ4MC_cpMA/exec';
         
-        // ==================== 讀取 Google Sheets ====================
-        async function fetchSheet(sheetName) {
-            const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheetName)}`;
-            
+        // 儲存資料
+        let heroData = null;
+        let productsData = [];
+        
+        // ==================== API 呼叫 ====================
+        async function fetchGAS(action) {
             try {
+                const url = `${GAS_URL}?action=${action}`;
                 const response = await fetch(url);
-                const text = await response.text();
-                
-                // 解析 Google 回傳的 JSONP 格式
-                const match = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);?$/);
-                if (!match) {
-                    console.error('無法解析回應');
-                    return null;
-                }
-                
-                const json = JSON.parse(match[1]);
-                
-                if (!json.table || !json.table.rows || json.table.rows.length === 0) {
-                    console.log(`${sheetName} 沒有資料`);
-                    return [];
-                }
-                
-                // 取得欄位標題
-                const headers = json.table.cols.map(col => col.label || '');
-                
-                // 轉換每一行資料
-                const data = json.table.rows.map(row => {
-                    const obj = {};
-                    if (row.c) {
-                        row.c.forEach((cell, i) => {
-                            if (headers[i]) {
-                                obj[headers[i]] = cell ? (cell.v !== null && cell.v !== undefined ? cell.v : '') : '';
-                            }
-                        });
-                    }
-                    return obj;
-                }).filter(obj => Object.values(obj).some(v => v !== '')); // 過濾空行
-                
-                console.log(`${sheetName} 資料:`, data);
-                return data;
-                
+                const result = await response.json();
+                console.log(`${action} 結果:`, result);
+                return result;
             } catch (error) {
-                console.error(`讀取 ${sheetName} 失敗:`, error);
-                return null;
+                console.error(`${action} 錯誤:`, error);
+                return { success: false, error: error.message };
             }
         }
         
@@ -552,8 +530,8 @@
         function renderHero(hero) {
             const container = document.getElementById('heroContainer');
             
-            if (!hero) {
-                container.innerHTML = '<p style="text-align:center; padding:40px; color:#999;">目前沒有團購活動</p>';
+            if (!hero || !hero.title) {
+                container.innerHTML = '<p class="empty-message">目前沒有團購活動</p>';
                 return;
             }
             
@@ -562,12 +540,14 @@
             container.innerHTML = `
                 <div class="hero-container">
                     <a href="${hero.link || '#'}" class="hero-image-wrapper" target="_blank">
-                        <img src="${hero.image}" alt="${hero.title}" class="hero-image" 
+                        <img src="${hero.image || 'https://via.placeholder.com/600x600?text=Coming+Soon'}" 
+                             alt="${hero.title}" 
+                             class="hero-image" 
                              onerror="this.src='https://via.placeholder.com/600x600?text=Image+Not+Found'">
                     </a>
                     <div class="hero-content">
                         <span class="hero-badge">🔥 限時團購</span>
-                        <h1 class="hero-title">${hero.title || '最新團購'}</h1>
+                        <h1 class="hero-title">${hero.title}</h1>
                         <p class="hero-description">${hero.description || ''}</p>
                         ${countdown ? `
                             <div class="hero-countdown">
@@ -586,7 +566,7 @@
             const container = document.getElementById('productsContainer');
             
             if (!products || products.length === 0) {
-                container.innerHTML = '<p style="text-align:center; padding:40px; color:#999;">目前沒有商品</p>';
+                container.innerHTML = '<p class="empty-message">目前沒有商品</p>';
                 return;
             }
             
@@ -604,7 +584,9 @@
                         <a href="${p.link || '#'}" class="product-card" target="_blank">
                             <div class="product-image-wrapper">
                                 ${p.badge ? `<span class="product-badge ${getBadgeClass(p.badge)}">${p.badge}</span>` : ''}
-                                <img src="${p.image}" alt="${p.name}" class="product-image"
+                                <img src="${p.image || 'https://via.placeholder.com/300x300?text=No+Image'}" 
+                                     alt="${p.name || '商品'}" 
+                                     class="product-image"
                                      onerror="this.src='https://via.placeholder.com/300x300?text=No+Image'">
                             </div>
                             <div class="product-info">
@@ -622,22 +604,28 @@
             console.log('開始載入資料...');
             
             // 讀取 Hero
-            const heroData = await fetchSheet('hero');
-            if (heroData && heroData.length > 0) {
-                renderHero(heroData[0]);
+            const heroResult = await fetchGAS('getHero');
+            if (heroResult.success && heroResult.data) {
+                heroData = heroResult.data;
+                renderHero(heroData);
             } else {
                 renderHero(null);
             }
             
             // 讀取 Products
-            const productsData = await fetchSheet('Products');
-            renderProducts(productsData);
+            const productsResult = await fetchGAS('getProducts');
+            if (productsResult.success && productsResult.data) {
+                productsData = productsResult.data;
+                renderProducts(productsData);
+            } else {
+                renderProducts([]);
+            }
             
             // 每分鐘更新倒數
             setInterval(() => {
                 const timer = document.getElementById('countdownTimer');
-                if (timer && heroData && heroData[0]) {
-                    const countdown = getCountdown(heroData[0].endDate);
+                if (timer && heroData && heroData.endDate) {
+                    const countdown = getCountdown(heroData.endDate);
                     if (countdown) timer.textContent = countdown;
                 }
             }, 60000);
