@@ -164,16 +164,24 @@
             color: var(--primary-dark);
         }
         
-        /* Mobile Header */
-        .mobile-header {
+        /* Mobile Top Bar - 時間顯示在最上方 */
+        .mobile-top-bar {
             display: none;
             background: #FDF8F8;
-            padding: 12px 20px;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-light);
+            border-bottom: 1px solid rgba(212, 165, 165, 0.2);
+        }
+        
+        /* Mobile Header - 漢堡選單在 Banner 下方 */
+        .mobile-header {
+            display: none;
+            background: var(--white);
+            padding: 15px 20px;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
             border-bottom: 1px solid rgba(212, 165, 165, 0.2);
         }
         
@@ -189,8 +197,9 @@
         /* Mobile Hero Banner */
         .mobile-hero-banner {
             display: none;
-            height: 50vh;
-            min-height: 300px;
+            height: 85vh;
+            max-height: 600px;
+            min-height: 400px;
             background-image: url('https://mommystartup.com/wp-content/uploads/2018/08/bg-header.jpg');
             background-size: cover;
             background-position: center;
@@ -199,7 +208,7 @@
         }
         
         .mobile-hero-banner img {
-            height: 150px;
+            height: 180px;
             filter: drop-shadow(0 2px 10px rgba(255,255,255,0.8));
         }
         
@@ -310,18 +319,21 @@
         /* Hide/Show based on screen */
         @media (max-width: 768px) {
             .top-bar, .hero-header, .desktop-nav {
-                display: none;
+                display: none !important;
             }
-            .mobile-header {
-                display: flex;
+            .mobile-top-bar {
+                display: block !important;
             }
             .mobile-hero-banner {
-                display: flex;
+                display: flex !important;
+            }
+            .mobile-header {
+                display: flex !important;
             }
         }
         
         @media (min-width: 769px) {
-            .mobile-header, .mobile-menu-overlay, .mobile-menu {
+            .mobile-top-bar, .mobile-header, .mobile-hero-banner, .mobile-menu-overlay, .mobile-menu {
                 display: none !important;
             }
         }
@@ -786,18 +798,21 @@
         </nav>
     </div>
     
-    <!-- Mobile Header -->
-    <header class="mobile-header">
-        <button class="mobile-menu-btn" onclick="openMobileMenu()">☰</button>
-        <button class="mobile-search-btn">🔍</button>
-    </header>
+    <!-- Mobile: Top Bar (時間) -->
+    <div class="mobile-top-bar" id="mobileDateDisplay"></div>
     
-    <!-- Mobile Hero Banner -->
+    <!-- Mobile: Hero Banner (花 + Logo) -->
     <div class="mobile-hero-banner">
         <a href="https://mommystartup.com/">
             <img src="https://mommystartup.com/wp-content/uploads/2023/02/2-removebg-preview-e1676949771313.png" alt="媽咪小編">
         </a>
     </div>
+    
+    <!-- Mobile: Header (漢堡選單) -->
+    <header class="mobile-header">
+        <button class="mobile-menu-btn" onclick="openMobileMenu()">☰</button>
+        <button class="mobile-search-btn">🔍</button>
+    </header>
     
     <!-- Desktop: Top Bar -->
     <div class="top-bar">
@@ -1112,8 +1127,14 @@
             const date = now.getDate();
             const year = now.getFullYear();
             const dateStr = `星期${day}, ${date} ${month} 月 ${year} - Welcome`;
+            
+            // 桌面版
             const el = document.getElementById('dateDisplay');
             if (el) el.textContent = dateStr;
+            
+            // 手機版
+            const mobileEl = document.getElementById('mobileDateDisplay');
+            if (mobileEl) mobileEl.textContent = dateStr;
         }
         updateDate();
     </script>
