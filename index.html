@@ -49,8 +49,70 @@
             line-height: 1.6;
         }
         
-        /* Header */
-        .header {
+        /* Top Bar */
+        .top-bar {
+            background: #FDF8F8;
+            padding: 8px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            border-bottom: 1px solid rgba(212, 165, 165, 0.2);
+        }
+        
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .top-bar-left span {
+            background: var(--primary-light);
+            padding: 4px 12px;
+            border-radius: 3px;
+            color: var(--text);
+            font-size: 12px;
+        }
+        
+        .top-bar-arrows {
+            display: flex;
+            gap: 5px;
+            color: var(--text-light);
+        }
+        
+        .top-bar-arrows a {
+            color: var(--text-light);
+            text-decoration: none;
+        }
+        
+        .top-bar-right {
+            color: var(--text-light);
+        }
+        
+        /* Hero Header */
+        .hero-header {
+            position: relative;
+            height: 280px;
+            background-image: url('https://mommystartup.com/wp-content/uploads/2018/08/bg-header.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-header-logo {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-header-logo img {
+            height: 120px;
+            filter: drop-shadow(0 2px 10px rgba(255,255,255,0.8));
+        }
+        
+        /* Desktop Nav */
+        .desktop-nav {
             background: var(--white);
             padding: 15px 20px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -59,41 +121,28 @@
             z-index: 100;
         }
         
-        .header-content {
+        .desktop-nav-content {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: center;
+            gap: 50px;
         }
         
-        .logo img {
-            height: 50px;
-            transition: transform 0.3s ease;
-        }
-        
-        .logo img:hover {
-            transform: scale(1.05);
-        }
-        
-        .nav {
-            display: flex;
-            gap: 30px;
-        }
-        
-        .nav a {
+        .desktop-nav a {
             color: var(--text);
             text-decoration: none;
             font-weight: 500;
             font-size: 15px;
             transition: color 0.3s ease;
             position: relative;
+            padding: 5px 0;
         }
         
-        .nav a::after {
+        .desktop-nav a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             width: 0;
             height: 2px;
@@ -101,12 +150,158 @@
             transition: width 0.3s ease;
         }
         
-        .nav a:hover {
+        .desktop-nav a:hover {
             color: var(--primary-dark);
         }
         
-        .nav a:hover::after {
+        .desktop-nav a:hover::after {
             width: 100%;
+        }
+        
+        .desktop-nav a.active {
+            color: var(--primary-dark);
+        }
+        
+        /* Mobile Header */
+        .mobile-header {
+            display: none;
+            background: #FDF8F8;
+            padding: 12px 20px;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(212, 165, 165, 0.2);
+        }
+        
+        .mobile-menu-btn, .mobile-search-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text);
+            padding: 5px;
+        }
+        
+        /* Mobile Slide Menu */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        
+        .mobile-menu-overlay.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100%;
+            background: var(--white);
+            z-index: 1001;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.show {
+            transform: translateX(0);
+        }
+        
+        .mobile-menu-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mobile-menu-close:hover {
+            background: var(--background);
+        }
+        
+        .mobile-menu-header {
+            padding: 40px 30px 30px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .mobile-menu-header img {
+            height: 100px;
+            margin-bottom: 20px;
+        }
+        
+        .mobile-menu-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .mobile-menu-social a {
+            color: var(--text);
+            font-size: 18px;
+            text-decoration: none;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mobile-menu-nav {
+            padding: 20px 0;
+        }
+        
+        .mobile-menu-nav a {
+            display: block;
+            padding: 15px 30px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 15px;
+            border-bottom: 1px solid #f5f5f5;
+            transition: all 0.2s;
+        }
+        
+        .mobile-menu-nav a:hover {
+            background: var(--background);
+            color: var(--primary-dark);
+        }
+        
+        /* Hide/Show based on screen */
+        @media (max-width: 768px) {
+            .top-bar, .hero-header, .desktop-nav {
+                display: none;
+            }
+            .mobile-header {
+                display: flex;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .mobile-header, .mobile-menu-overlay, .mobile-menu {
+                display: none !important;
+            }
         }
         
         /* Hero Section */
@@ -126,22 +321,89 @@
             min-height: 400px;
         }
         
-        .hero-image-wrapper {
+        /* 輪播樣式 */
+        .hero-slider {
             position: relative;
             overflow: hidden;
+        }
+        
+        .hero-slides {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .hero-slide {
+            min-width: 100%;
+            position: relative;
+        }
+        
+        .hero-slide a {
             display: block;
-            text-decoration: none;
+            height: 100%;
         }
         
         .hero-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            min-height: 400px;
         }
         
-        .hero-image-wrapper:hover .hero-image {
-            transform: scale(1.05);
+        /* 輪播指示點 */
+        .slider-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+        
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .slider-dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+        
+        /* 輪播箭頭 */
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.8);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 10;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slider-arrow:hover {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .slider-arrow.prev {
+            left: 10px;
+        }
+        
+        .slider-arrow.next {
+            right: 10px;
         }
         
         .hero-content {
@@ -259,7 +521,8 @@
             transition: all 0.3s ease;
             text-decoration: none;
             color: inherit;
-            display: block;
+            display: flex;
+            flex-direction: column;
         }
         
         .product-card:hover {
@@ -315,6 +578,9 @@
         
         .product-info {
             padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .product-name {
@@ -328,10 +594,30 @@
             font-size: 14px;
             color: var(--text-light);
             line-height: 1.6;
+            flex: 1;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+        }
+        
+        .product-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .product-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 165, 165, 0.4);
         }
         
         /* Footer */
@@ -382,23 +668,12 @@
         
         /* Responsive */
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .nav {
-                gap: 20px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
             .hero-container {
                 grid-template-columns: 1fr;
             }
             
-            .hero-image-wrapper {
-                height: 280px;
+            .hero-image {
+                min-height: 280px;
             }
             
             .hero-content {
@@ -425,6 +700,24 @@
             .product-description {
                 font-size: 13px;
             }
+            
+            .slider-arrow {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+            
+            .hero {
+                margin: 20px auto;
+            }
+            
+            .products-section {
+                margin: 40px auto;
+            }
+            
+            .section-title {
+                font-size: 22px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -440,21 +733,72 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     
-    <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <a href="https://mommystartup.com" class="logo">
-                <img src="https://mommystartup.com/wp-content/uploads/2023/02/2-removebg-preview-1.png" alt="媽咪小編">
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+    
+    <!-- Mobile Slide Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" onclick="closeMobileMenu()">✕</button>
+        <div class="mobile-menu-header">
+            <a href="https://mommystartup.com/">
+                <img src="https://mommystartup.com/wp-content/uploads/2023/02/2-removebg-preview-e1676949771313.png" alt="媽咪小編">
             </a>
-            <nav class="nav">
-                <a href="https://mommystartup.com/">首頁</a>
-                <a href="https://mommystartup.com/about-us/">關於我們</a>
-                <a href="https://mommystartup.com/blog/">部落格</a>
-                <a href="https://shop.mommystartup.com/">媽咪精選好物</a>
-                <a href="https://mommystartup.com/contactus/">團媽募集</a>
-            </nav>
+            <div class="mobile-menu-social">
+                <a href="https://www.facebook.com/mommy.startup22" target="_blank">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/mommystartup" target="_blank">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="https://lin.ee/hD9U4uFg" target="_blank">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+                </a>
+            </div>
         </div>
+        <nav class="mobile-menu-nav">
+            <a href="https://mommystartup.com/">首頁</a>
+            <a href="https://mommystartup.com/about-us/">關於我們</a>
+            <a href="https://mommystartup.com/blog/">部落格</a>
+            <a href="https://shop.mommystartup.com/">媽咪精選好物</a>
+            <a href="https://mommystartup.com/contactus/">團媽募集</a>
+        </nav>
+    </div>
+    
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <button class="mobile-menu-btn" onclick="openMobileMenu()">☰</button>
+        <button class="mobile-search-btn">🔍</button>
     </header>
+    
+    <!-- Desktop: Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <span>熱門文章</span>
+            <div class="top-bar-arrows">
+                <a href="#">‹</a>
+                <a href="#">›</a>
+            </div>
+        </div>
+        <div class="top-bar-right" id="dateDisplay"></div>
+    </div>
+    
+    <!-- Desktop: Hero Header with Logo -->
+    <div class="hero-header">
+        <a href="https://mommystartup.com/" class="hero-header-logo">
+            <img src="https://mommystartup.com/wp-content/uploads/2023/02/2-removebg-preview-e1676949771313.png" alt="媽咪小編">
+        </a>
+    </div>
+    
+    <!-- Desktop: Navigation -->
+    <nav class="desktop-nav">
+        <div class="desktop-nav-content">
+            <a href="https://mommystartup.com/">首頁</a>
+            <a href="https://mommystartup.com/about-us/">關於我們</a>
+            <a href="https://mommystartup.com/blog/">部落格</a>
+            <a href="https://shop.mommystartup.com/" class="active">媽咪精選好物</a>
+            <a href="https://mommystartup.com/contactus/">團媽募集</a>
+        </div>
+    </nav>
     
     <!-- Hero Section -->
     <section class="hero">
@@ -490,40 +834,30 @@
         
         let heroData = null;
         let productsData = [];
+        let currentSlide = 0;
+        let slideInterval = null;
         
         // ==================== 快取功能 ====================
         function saveCache(key, data) {
             try {
-                localStorage.setItem(key, JSON.stringify({
-                    data: data,
-                    time: Date.now()
-                }));
-            } catch (e) {
-                console.log('快取儲存失敗');
-            }
+                localStorage.setItem(key, JSON.stringify({ data: data, time: Date.now() }));
+            } catch (e) {}
         }
         
         function getCache(key) {
             try {
                 const cached = localStorage.getItem(key);
-                if (cached) {
-                    return JSON.parse(cached).data;
-                }
-            } catch (e) {
-                console.log('快取讀取失敗');
-            }
+                if (cached) return JSON.parse(cached).data;
+            } catch (e) {}
             return null;
         }
         
         // ==================== API 呼叫 ====================
         async function fetchGAS(action) {
             try {
-                const url = `${GAS_URL}?action=${action}`;
-                const response = await fetch(url);
-                const result = await response.json();
-                return result;
+                const response = await fetch(`${GAS_URL}?action=${action}`);
+                return await response.json();
             } catch (error) {
-                console.error(`${action} 錯誤:`, error);
                 return { success: false, error: error.message };
             }
         }
@@ -531,21 +865,56 @@
         // ==================== 倒數計時 ====================
         function getCountdown(endDate) {
             if (!endDate) return null;
-            
             const end = new Date(endDate);
             const now = new Date();
             const diff = end - now;
-            
             if (diff <= 0) return '已結束';
-            
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            if (days > 0) return `剩餘 ${days} 天 ${hours} 小時`;
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            return `剩餘 ${hours} 小時 ${minutes} 分鐘`;
+        }
+        
+        // ==================== 輪播功能 ====================
+        function getImages(hero) {
+            const images = [];
+            if (hero.image) images.push(hero.image);
+            if (hero.image2) images.push(hero.image2);
+            if (hero.image3) images.push(hero.image3);
+            return images.length > 0 ? images : ['https://via.placeholder.com/600x600?text=Coming+Soon'];
+        }
+        
+        function goToSlide(index) {
+            const images = heroData ? getImages(heroData) : [];
+            if (images.length <= 1) return;
             
-            if (days > 0) {
-                return `剩餘 ${days} 天 ${hours} 小時`;
-            } else {
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                return `剩餘 ${hours} 小時 ${minutes} 分鐘`;
+            currentSlide = (index + images.length) % images.length;
+            const slides = document.querySelector('.hero-slides');
+            const dots = document.querySelectorAll('.slider-dot');
+            
+            if (slides) {
+                slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+            }
+            
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+        }
+        
+        function nextSlide() {
+            goToSlide(currentSlide + 1);
+        }
+        
+        function prevSlide() {
+            goToSlide(currentSlide - 1);
+        }
+        
+        function startAutoPlay() {
+            if (slideInterval) clearInterval(slideInterval);
+            const images = heroData ? getImages(heroData) : [];
+            if (images.length > 1) {
+                slideInterval = setInterval(nextSlide, 4000);
             }
         }
         
@@ -558,16 +927,33 @@
                 return;
             }
             
+            const images = getImages(hero);
             const countdown = getCountdown(hero.endDate);
+            const showArrows = images.length > 1;
             
             container.innerHTML = `
                 <div class="hero-container">
-                    <a href="${hero.link || '#'}" class="hero-image-wrapper" target="_blank">
-                        <img src="${hero.image || 'https://via.placeholder.com/600x600?text=Coming+Soon'}" 
-                             alt="${hero.title}" 
-                             class="hero-image" 
-                             onerror="this.src='https://via.placeholder.com/600x600?text=Image+Not+Found'">
-                    </a>
+                    <div class="hero-slider">
+                        <div class="hero-slides">
+                            ${images.map((img, i) => `
+                                <div class="hero-slide">
+                                    <a href="${hero.link || '#'}" target="_blank">
+                                        <img src="${img}" alt="${hero.title}" class="hero-image" 
+                                             onerror="this.src='https://via.placeholder.com/600x600?text=Image+Not+Found'">
+                                    </a>
+                                </div>
+                            `).join('')}
+                        </div>
+                        ${showArrows ? `
+                            <button class="slider-arrow prev" onclick="prevSlide()">❮</button>
+                            <button class="slider-arrow next" onclick="nextSlide()">❯</button>
+                            <div class="slider-dots">
+                                ${images.map((_, i) => `
+                                    <div class="slider-dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${i})"></div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
                     <div class="hero-content">
                         <span class="hero-badge">🔥 限時團購</span>
                         <h1 class="hero-title">${hero.title}</h1>
@@ -582,6 +968,9 @@
                     </div>
                 </div>
             `;
+            
+            currentSlide = 0;
+            startAutoPlay();
         }
         
         // ==================== 渲染商品 ====================
@@ -604,19 +993,22 @@
             container.innerHTML = `
                 <div class="products-grid">
                     ${products.map(p => `
-                        <a href="${p.link || '#'}" class="product-card" target="_blank">
-                            <div class="product-image-wrapper">
-                                ${p.badge ? `<span class="product-badge ${getBadgeClass(p.badge)}">${p.badge}</span>` : ''}
-                                <img src="${p.image || 'https://via.placeholder.com/300x300?text=No+Image'}" 
-                                     alt="${p.name || '商品'}" 
-                                     class="product-image"
-                                     onerror="this.src='https://via.placeholder.com/300x300?text=No+Image'">
-                            </div>
+                        <div class="product-card">
+                            <a href="${p.link || '#'}" target="_blank">
+                                <div class="product-image-wrapper">
+                                    ${p.badge ? `<span class="product-badge ${getBadgeClass(p.badge)}">${p.badge}</span>` : ''}
+                                    <img src="${p.image || 'https://via.placeholder.com/300x300?text=No+Image'}" 
+                                         alt="${p.name || '商品'}" 
+                                         class="product-image"
+                                         onerror="this.src='https://via.placeholder.com/300x300?text=No+Image'">
+                                </div>
+                            </a>
                             <div class="product-info">
                                 <h3 class="product-name">${p.name || '商品名稱'}</h3>
                                 <p class="product-description">${p.description || ''}</p>
+                                <a href="${p.link || '#'}" class="product-cta" target="_blank">${p.ctaText || '立即選購'}</a>
                             </div>
-                        </a>
+                        </div>
                     `).join('')}
                 </div>
             `;
@@ -624,7 +1016,7 @@
         
         // ==================== 初始化 ====================
         async function init() {
-            // 步驟 1：先顯示快取資料（立即顯示）
+            // 步驟 1：先顯示快取
             const cachedHero = getCache(CACHE_KEY_HERO);
             const cachedProducts = getCache(CACHE_KEY_PRODUCTS);
             
@@ -644,7 +1036,7 @@
                 fetchGAS('getProducts')
             ]);
             
-            // 步驟 3：更新畫面並儲存快取
+            // 步驟 3：更新畫面
             if (heroResult.success && heroResult.data) {
                 heroData = heroResult.data;
                 renderHero(heroData);
@@ -667,8 +1059,34 @@
             }, 60000);
         }
         
-        // 啟動
         init();
+        
+        // ==================== 手機選單 ====================
+        function openMobileMenu() {
+            document.getElementById('mobileMenu').classList.add('show');
+            document.getElementById('mobileMenuOverlay').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').classList.remove('show');
+            document.getElementById('mobileMenuOverlay').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        
+        // ==================== 日期顯示 ====================
+        function updateDate() {
+            const now = new Date();
+            const days = ['日', '一', '二', '三', '四', '五', '六'];
+            const day = days[now.getDay()];
+            const month = now.getMonth() + 1;
+            const date = now.getDate();
+            const year = now.getFullYear();
+            const dateStr = `星期${day}, ${date} ${month} 月 ${year} - Welcome`;
+            const el = document.getElementById('dateDisplay');
+            if (el) el.textContent = dateStr;
+        }
+        updateDate();
     </script>
 </body>
 </html>
