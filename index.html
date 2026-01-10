@@ -109,7 +109,7 @@
         }
         
         .hero-header-logo img {
-            height: 220px;
+            height: 300px;
             filter: drop-shadow(0 2px 10px rgba(255,255,255,0.8));
         }
         
@@ -184,6 +184,23 @@
             cursor: pointer;
             color: var(--text);
             padding: 5px;
+        }
+        
+        /* Mobile Hero Banner */
+        .mobile-hero-banner {
+            display: none;
+            height: 50vh;
+            min-height: 300px;
+            background-image: url('https://mommystartup.com/wp-content/uploads/2018/08/bg-header.jpg');
+            background-size: cover;
+            background-position: center;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mobile-hero-banner img {
+            height: 150px;
+            filter: drop-shadow(0 2px 10px rgba(255,255,255,0.8));
         }
         
         /* Mobile Slide Menu */
@@ -296,6 +313,9 @@
                 display: none;
             }
             .mobile-header {
+                display: flex;
+            }
+            .mobile-hero-banner {
                 display: flex;
             }
         }
@@ -771,6 +791,13 @@
         <button class="mobile-menu-btn" onclick="openMobileMenu()">☰</button>
         <button class="mobile-search-btn">🔍</button>
     </header>
+    
+    <!-- Mobile Hero Banner -->
+    <div class="mobile-hero-banner">
+        <a href="https://mommystartup.com/">
+            <img src="https://mommystartup.com/wp-content/uploads/2023/02/2-removebg-preview-e1676949771313.png" alt="媽咪小編">
+        </a>
+    </div>
     
     <!-- Desktop: Top Bar -->
     <div class="top-bar">
