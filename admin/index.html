@@ -8,20 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Noto Sans TC', sans-serif;
-            background: #FDFBF9;
-            color: #4A4A4A;
-            min-height: 100vh;
-        }
-
-        /* Header */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans TC', sans-serif; background: #FDFBF9; color: #4A4A4A; min-height: 100vh; }
+        
         .admin-header {
             background: linear-gradient(135deg, #E8C4C4, #D4A5A5);
             padding: 20px 30px;
@@ -34,14 +23,7 @@
             z-index: 100;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-
-        .admin-header h1 {
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
+        .admin-header h1 { font-size: 20px; display: flex; align-items: center; gap: 10px; }
         .admin-header a {
             color: white;
             text-decoration: none;
@@ -49,22 +31,14 @@
             background: rgba(255,255,255,0.2);
             border-radius: 8px;
             font-size: 14px;
-            transition: background 0.2s;
         }
-
-        .admin-header a:hover {
-            background: rgba(255,255,255,0.3);
-        }
-
-        /* Tabs */
+        
         .tabs {
             display: flex;
-            gap: 0;
             background: white;
             border-bottom: 1px solid #E0E0E0;
             padding: 0 30px;
         }
-
         .tab {
             padding: 15px 25px;
             cursor: pointer;
@@ -72,35 +46,14 @@
             font-size: 15px;
             font-weight: 500;
             color: #777;
-            transition: all 0.2s;
         }
-
-        .tab:hover {
-            color: #D4A5A5;
-        }
-
-        .tab.active {
-            color: #C48B8B;
-            border-bottom-color: #D4A5A5;
-        }
-
-        /* Main Content */
-        .main-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 30px;
-        }
-
-        /* Section */
-        .section {
-            display: none;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        /* Card */
+        .tab:hover { color: #D4A5A5; }
+        .tab.active { color: #C48B8B; border-bottom-color: #D4A5A5; }
+        
+        .main-content { max-width: 900px; margin: 0 auto; padding: 30px; }
+        .section { display: none; }
+        .section.active { display: block; }
+        
         .card {
             background: white;
             border-radius: 12px;
@@ -108,7 +61,6 @@
             padding: 25px;
             margin-bottom: 20px;
         }
-
         .card-header {
             display: flex;
             justify-content: space-between;
@@ -117,86 +69,33 @@
             padding-bottom: 15px;
             border-bottom: 1px solid #E0E0E0;
         }
-
-        .card-title {
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-        /* Form */
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            font-size: 14px;
-        }
-
-        .form-input {
+        .card-title { font-size: 18px; font-weight: 600; }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 14px; }
+        .form-input, .form-textarea {
             width: 100%;
             padding: 12px 15px;
             border: 1px solid #E0E0E0;
             border-radius: 8px;
             font-size: 15px;
             font-family: inherit;
-            transition: border-color 0.2s;
         }
-
-        .form-input:focus {
+        .form-input:focus, .form-textarea:focus {
             outline: none;
             border-color: #D4A5A5;
             box-shadow: 0 0 0 3px rgba(212, 165, 165, 0.15);
         }
-
-        .form-textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #E0E0E0;
-            border-radius: 8px;
-            font-size: 15px;
-            font-family: inherit;
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .form-textarea:focus {
-            outline: none;
-            border-color: #D4A5A5;
-            box-shadow: 0 0 0 3px rgba(212, 165, 165, 0.15);
-        }
-
-        .form-hint {
-            font-size: 12px;
-            color: #999;
-            margin-top: 5px;
-        }
-
-        .form-row {
-            display: flex;
-            gap: 20px;
-        }
-
-        .form-row .form-group {
-            flex: 1;
-        }
-
-        /* Image Preview */
-        .image-input-group {
-            display: flex;
-            gap: 15px;
-            align-items: flex-start;
-        }
-
-        .image-input-group .input-wrapper {
-            flex: 1;
-        }
-
+        .form-textarea { min-height: 100px; resize: vertical; }
+        .form-hint { font-size: 12px; color: #999; margin-top: 5px; }
+        .form-row { display: flex; gap: 20px; }
+        .form-row .form-group { flex: 1; }
+        
+        .image-input-group { display: flex; gap: 15px; align-items: flex-start; }
+        .image-input-group .input-wrapper { flex: 1; }
         .image-preview {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             border: 2px dashed #E0E0E0;
             border-radius: 8px;
             display: flex;
@@ -206,21 +105,9 @@
             flex-shrink: 0;
             background: #F9F9F9;
         }
-
-        .image-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .image-preview span {
-            font-size: 12px;
-            color: #999;
-            text-align: center;
-            padding: 10px;
-        }
-
-        /* Buttons */
+        .image-preview img { width: 100%; height: 100%; object-fit: cover; }
+        .image-preview span { font-size: 11px; color: #999; text-align: center; padding: 5px; }
+        
         .btn {
             padding: 12px 24px;
             border: none;
@@ -228,61 +115,22 @@
             font-size: 14px;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.2s;
+            font-family: inherit;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            font-family: inherit;
         }
-
         .btn-primary {
             background: linear-gradient(135deg, #D4A5A5, #C48B8B);
             color: white;
         }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(212, 165, 165, 0.4);
-        }
-
-        .btn-primary:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .btn-secondary {
-            background: #A8D5BA;
-            color: #4A4A4A;
-        }
-
-        .btn-danger {
-            background: #FF6B6B;
-            color: white;
-        }
-
-        .btn-outline {
-            background: white;
-            border: 1px solid #E0E0E0;
-            color: #4A4A4A;
-        }
-
-        .btn-outline:hover {
-            background: #F9F9F9;
-        }
-
-        .btn-sm {
-            padding: 8px 16px;
-            font-size: 13px;
-        }
-
-        /* Product List */
-        .product-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
+        .btn-primary:hover { box-shadow: 0 4px 15px rgba(212, 165, 165, 0.4); }
+        .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+        .btn-danger { background: #FF6B6B; color: white; }
+        .btn-outline { background: white; border: 1px solid #E0E0E0; color: #4A4A4A; }
+        .btn-sm { padding: 8px 16px; font-size: 13px; }
+        
+        .product-list { display: flex; flex-direction: column; gap: 12px; }
         .product-item {
             display: flex;
             gap: 15px;
@@ -291,7 +139,6 @@
             border-radius: 10px;
             align-items: center;
         }
-
         .product-item-image {
             width: 70px;
             height: 70px;
@@ -300,34 +147,10 @@
             flex-shrink: 0;
             background: white;
         }
-
-        .product-item-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .product-item-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .product-item-info h4 {
-            font-size: 15px;
-            margin-bottom: 4px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .product-item-info p {
-            font-size: 13px;
-            color: #777;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
+        .product-item-image img { width: 100%; height: 100%; object-fit: cover; }
+        .product-item-info { flex: 1; min-width: 0; }
+        .product-item-info h4 { font-size: 15px; margin-bottom: 4px; }
+        .product-item-info p { font-size: 13px; color: #777; }
         .product-badge {
             display: inline-block;
             background: #E8B86D;
@@ -336,52 +159,22 @@
             font-size: 11px;
             margin-top: 5px;
         }
-
-        .product-item-actions {
-            display: flex;
-            gap: 8px;
-            flex-shrink: 0;
-        }
-
-        /* Badge Options */
-        .badge-options {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
+        .product-item-actions { display: flex; gap: 8px; flex-shrink: 0; }
+        
+        .badge-options { display: flex; gap: 10px; flex-wrap: wrap; }
         .badge-option {
             padding: 8px 16px;
             border: 2px solid #E0E0E0;
             border-radius: 20px;
             cursor: pointer;
             font-size: 13px;
-            transition: all 0.2s;
         }
-
-        .badge-option:hover {
-            border-color: #E8C4C4;
-        }
-
-        .badge-option.selected {
-            background: #D4A5A5;
-            border-color: #D4A5A5;
-            color: white;
-        }
-
-        /* Empty State */
-        .empty-state {
-            text-align: center;
-            padding: 50px 20px;
-            color: #999;
-        }
-
-        .empty-state-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        /* Toast */
+        .badge-option:hover { border-color: #E8C4C4; }
+        .badge-option.selected { background: #D4A5A5; border-color: #D4A5A5; color: white; }
+        
+        .empty-state { text-align: center; padding: 50px 20px; color: #999; }
+        .empty-state-icon { font-size: 48px; margin-bottom: 15px; }
+        
         .toast {
             position: fixed;
             bottom: 30px;
@@ -390,34 +183,18 @@
             background: #4A4A4A;
             color: white;
             border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
             transform: translateY(100px);
             opacity: 0;
             transition: all 0.3s;
             z-index: 1000;
-            font-size: 14px;
         }
-
-        .toast.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .toast.success {
-            background: #2E7D32;
-        }
-
-        .toast.error {
-            background: #FF6B6B;
-        }
-
-        /* Loading */
+        .toast.show { transform: translateY(0); opacity: 1; }
+        .toast.success { background: #2E7D32; }
+        .toast.error { background: #FF6B6B; }
+        
         .loading-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(255,255,255,0.9);
             display: flex;
             align-items: center;
@@ -425,14 +202,8 @@
             z-index: 999;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s;
         }
-
-        .loading-overlay.show {
-            opacity: 1;
-            pointer-events: all;
-        }
-
+        .loading-overlay.show { opacity: 1; pointer-events: all; }
         .spinner {
             width: 40px;
             height: 40px;
@@ -441,18 +212,11 @@
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Modal */
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
         .modal-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0,0,0,0.5);
             display: flex;
             align-items: center;
@@ -460,14 +224,8 @@
             z-index: 1000;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s;
         }
-
-        .modal-overlay.show {
-            opacity: 1;
-            pointer-events: all;
-        }
-
+        .modal-overlay.show { opacity: 1; pointer-events: all; }
         .modal {
             background: white;
             border-radius: 12px;
@@ -479,37 +237,21 @@
             transform: scale(0.9);
             transition: transform 0.3s;
         }
-
-        .modal-overlay.show .modal {
-            transform: scale(1);
-        }
-
+        .modal-overlay.show .modal { transform: scale(1); }
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
         }
-
-        .modal-title {
-            font-size: 18px;
-            font-weight: 600;
-        }
-
+        .modal-title { font-size: 18px; font-weight: 600; }
         .modal-close {
             background: none;
             border: none;
             font-size: 24px;
             cursor: pointer;
             color: #999;
-            padding: 5px;
-            line-height: 1;
         }
-
-        .modal-close:hover {
-            color: #4A4A4A;
-        }
-
         .modal-actions {
             display: flex;
             gap: 12px;
@@ -518,8 +260,7 @@
             padding-top: 20px;
             border-top: 1px solid #E0E0E0;
         }
-
-        /* Status */
+        
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -528,55 +269,19 @@
             border-radius: 20px;
             font-size: 13px;
         }
-
-        .status-badge.connected {
-            background: #E8F5E9;
-            color: #2E7D32;
-        }
-
-        .status-badge.error {
-            background: #FFEBEE;
-            color: #C62828;
-        }
-
-        /* Responsive */
+        .status-badge.connected { background: #E8F5E9; color: #2E7D32; }
+        .status-badge.error { background: #FFEBEE; color: #C62828; }
+        
         @media (max-width: 600px) {
-            .main-content {
-                padding: 20px 15px;
-            }
-
-            .form-row {
-                flex-direction: column;
-                gap: 0;
-            }
-
-            .product-item {
-                flex-wrap: wrap;
-            }
-
-            .product-item-actions {
-                width: 100%;
-                justify-content: flex-end;
-                margin-top: 10px;
-            }
-
-            .admin-header {
-                padding: 15px 20px;
-            }
-
-            .admin-header h1 {
-                font-size: 16px;
-            }
+            .main-content { padding: 20px 15px; }
+            .form-row { flex-direction: column; gap: 0; }
+            .product-item { flex-wrap: wrap; }
+            .product-item-actions { width: 100%; justify-content: flex-end; margin-top: 10px; }
         }
     </style>
 </head>
 <body>
-    <!-- Loading -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="spinner"></div>
-    </div>
-
-    <!-- Toast -->
+    <div class="loading-overlay" id="loadingOverlay"><div class="spinner"></div></div>
     <div class="toast" id="toast"></div>
 
     <!-- Product Modal -->
@@ -597,11 +302,8 @@
                 <div class="image-input-group">
                     <div class="input-wrapper">
                         <input type="text" class="form-input" id="editImage" placeholder="https://..." oninput="previewEditImage()">
-                        <p class="form-hint">建議使用 Cloudinary 或 WordPress 媒體庫</p>
                     </div>
-                    <div class="image-preview" id="editImagePreview">
-                        <span>預覽</span>
-                    </div>
+                    <div class="image-preview" id="editImagePreview"><span>預覽</span></div>
                 </div>
             </div>
             
@@ -610,9 +312,15 @@
                 <textarea class="form-textarea" id="editDesc" placeholder="輸入商品說明"></textarea>
             </div>
             
-            <div class="form-group">
-                <label class="form-label">購買連結 *</label>
-                <input type="text" class="form-input" id="editLink" placeholder="https://...">
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">購買連結 *</label>
+                    <input type="text" class="form-input" id="editLink" placeholder="https://...">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">按鈕文字</label>
+                    <input type="text" class="form-input" id="editCtaText" placeholder="立即選購">
+                </div>
             </div>
             
             <div class="form-group">
@@ -632,7 +340,6 @@
         </div>
     </div>
 
-    <!-- Header -->
     <header class="admin-header">
         <h1>📦 媽咪精選好物 - 後台</h1>
         <div style="display: flex; align-items: center; gap: 15px;">
@@ -641,13 +348,11 @@
         </div>
     </header>
 
-    <!-- Tabs -->
     <div class="tabs">
         <div class="tab active" onclick="showSection('hero', this)">🎯 最新團購</div>
         <div class="tab" onclick="showSection('products', this)">🛍️ 常態商品</div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
         <!-- Hero Section -->
         <div class="section active" id="section-hero">
@@ -663,16 +368,34 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">主圖網址 *</label>
+                    <label class="form-label">主圖網址 1 *</label>
                     <div class="image-input-group">
                         <div class="input-wrapper">
-                            <input type="text" class="form-input" id="heroImage" placeholder="https://..." oninput="previewHeroImage()">
-                            <p class="form-hint">建議尺寸 800x800，正方形或 4:3</p>
+                            <input type="text" class="form-input" id="heroImage" placeholder="https://..." oninput="previewHeroImage(1)">
                         </div>
-                        <div class="image-preview" id="heroImagePreview">
-                            <span>預覽</span>
-                        </div>
+                        <div class="image-preview" id="heroImagePreview1"><span>預覽</span></div>
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">主圖網址 2（選填）</label>
+                    <div class="image-input-group">
+                        <div class="input-wrapper">
+                            <input type="text" class="form-input" id="heroImage2" placeholder="https://..." oninput="previewHeroImage(2)">
+                        </div>
+                        <div class="image-preview" id="heroImagePreview2"><span>預覽</span></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">主圖網址 3（選填）</label>
+                    <div class="image-input-group">
+                        <div class="input-wrapper">
+                            <input type="text" class="form-input" id="heroImage3" placeholder="https://..." oninput="previewHeroImage(3)">
+                        </div>
+                        <div class="image-preview" id="heroImagePreview3"><span>預覽</span></div>
+                    </div>
+                    <p class="form-hint">有多張圖會自動輪播，只填一張就只顯示一張</p>
                 </div>
 
                 <div class="form-group">
@@ -706,7 +429,6 @@
                     <span class="card-title">📦 商品列表</span>
                     <button class="btn btn-primary" onclick="openAddModal()">➕ 新增商品</button>
                 </div>
-
                 <div class="product-list" id="productList">
                     <div class="empty-state">
                         <div class="empty-state-icon">📦</div>
@@ -718,26 +440,21 @@
     </div>
 
     <script>
-        // 設定
         const GAS_URL = 'https://script.google.com/macros/s/AKfycbwTGl1rkvVWLijCViUV2xb3qYKUOhFF5fcb0Id2-Ib2NePx6pIOw0EU2MM6PZ4MC_cpMA/exec';
         
-        // 資料
         let heroData = {};
         let productsData = [];
         let editIndex = -1;
 
-        // 初始化
         async function init() {
             showLoading(true);
             try {
-                // 載入 Hero
                 const heroRes = await fetchGAS('getHero');
                 if (heroRes.success && heroRes.data) {
                     heroData = heroRes.data;
                     fillHeroForm();
                 }
                 
-                // 載入 Products
                 const prodRes = await fetchGAS('getProducts');
                 if (prodRes.success && prodRes.data) {
                     productsData = prodRes.data;
@@ -746,14 +463,12 @@
                 
                 setStatus(true);
             } catch (e) {
-                console.error(e);
                 setStatus(false);
                 showToast('連線失敗', 'error');
             }
             showLoading(false);
         }
 
-        // API
         async function fetchGAS(action, data = null) {
             let url = `${GAS_URL}?action=${action}`;
             if (data) url += `&data=${encodeURIComponent(JSON.stringify(data))}`;
@@ -761,21 +476,26 @@
             return await res.json();
         }
 
-        // Hero
         function fillHeroForm() {
             document.getElementById('heroTitle').value = heroData.title || '';
             document.getElementById('heroImage').value = heroData.image || '';
+            document.getElementById('heroImage2').value = heroData.image2 || '';
+            document.getElementById('heroImage3').value = heroData.image3 || '';
             document.getElementById('heroDescription').value = heroData.description || '';
             document.getElementById('heroLink').value = heroData.link || '';
             document.getElementById('heroCtaText').value = heroData.ctaText || '立即搶購';
             document.getElementById('heroEndDate').value = heroData.endDate || '';
-            previewHeroImage();
+            previewHeroImage(1);
+            previewHeroImage(2);
+            previewHeroImage(3);
         }
 
         async function saveHero() {
             heroData = {
                 title: document.getElementById('heroTitle').value.trim(),
                 image: document.getElementById('heroImage').value.trim(),
+                image2: document.getElementById('heroImage2').value.trim(),
+                image3: document.getElementById('heroImage3').value.trim(),
                 description: document.getElementById('heroDescription').value.trim(),
                 link: document.getElementById('heroLink').value.trim(),
                 ctaText: document.getElementById('heroCtaText').value.trim() || '立即搶購',
@@ -783,7 +503,7 @@
             };
             
             if (!heroData.title || !heroData.image || !heroData.link) {
-                showToast('請填寫標題、圖片、連結', 'error');
+                showToast('請填寫標題、至少一張圖片、連結', 'error');
                 return;
             }
             
@@ -806,13 +526,13 @@
             btn.textContent = '💾 儲存並發布';
         }
 
-        function previewHeroImage() {
-            const url = document.getElementById('heroImage').value;
-            const el = document.getElementById('heroImagePreview');
+        function previewHeroImage(num) {
+            const inputId = num === 1 ? 'heroImage' : `heroImage${num}`;
+            const url = document.getElementById(inputId).value;
+            const el = document.getElementById(`heroImagePreview${num}`);
             el.innerHTML = url ? `<img src="${url}" onerror="this.parentElement.innerHTML='<span>載入失敗</span>'">` : '<span>預覽</span>';
         }
 
-        // Products
         function renderProducts() {
             const el = document.getElementById('productList');
             if (!productsData.length) {
@@ -844,6 +564,7 @@
             document.getElementById('editImage').value = '';
             document.getElementById('editDesc').value = '';
             document.getElementById('editLink').value = '';
+            document.getElementById('editCtaText').value = '';
             document.getElementById('editImagePreview').innerHTML = '<span>預覽</span>';
             document.querySelectorAll('.badge-option').forEach(o => o.classList.toggle('selected', o.dataset.badge === ''));
             document.getElementById('productModal').classList.add('show');
@@ -857,6 +578,7 @@
             document.getElementById('editImage').value = p.image || '';
             document.getElementById('editDesc').value = p.description || '';
             document.getElementById('editLink').value = p.link || '';
+            document.getElementById('editCtaText').value = p.ctaText || '';
             previewEditImage();
             document.querySelectorAll('.badge-option').forEach(o => o.classList.toggle('selected', o.dataset.badge === (p.badge || '')));
             document.getElementById('productModal').classList.add('show');
@@ -882,6 +604,7 @@
             const image = document.getElementById('editImage').value.trim();
             const description = document.getElementById('editDesc').value.trim();
             const link = document.getElementById('editLink').value.trim();
+            const ctaText = document.getElementById('editCtaText').value.trim();
             const badge = document.querySelector('.badge-option.selected')?.dataset.badge || '';
             
             if (!name || !image || !link) {
@@ -889,7 +612,7 @@
                 return;
             }
             
-            const product = { name, image, description, link, badge };
+            const product = { name, image, description, link, badge, ctaText };
             
             if (editIndex >= 0) {
                 productsData[editIndex] = product;
@@ -922,7 +645,6 @@
             }
         }
 
-        // UI
         function showSection(name, tab) {
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
@@ -947,7 +669,6 @@
             el.textContent = ok ? '● 已連線' : '● 連線失敗';
         }
 
-        // 啟動
         init();
     </script>
 </body>
